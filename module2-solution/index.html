@@ -38,7 +38,7 @@
          <button class="btn btn-default" ng-click="list1.buyItem();"><span class="glyphicon glyphicon-ok"></span> Bought</button>
        </li>
      </ul>
-     <div ng-if="list1.message[0]" class="emptyMessage">{{list1.message[0]}}</div>
+     <div ng-if="list1.items.length == 0" class="emptyMessage">Everything is bought!</div>
 
     </div>
 
@@ -48,7 +48,7 @@
      <ul>
        <li ng-repeat="item in list2.items">Bought {{item.quantity}} {{item.name}}</li>
      </ul>
-     <div ng-if="list2.message[1]" class="emptyMessage">{{list2.message[1]}}</div>
+     <div ng-if="list2.items.length == 0" class="emptyMessage">Nothing bought yet.</div>
 
     </div>
   </div>

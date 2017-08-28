@@ -12,7 +12,6 @@ function ToBuyController (ShoppingListCheckOffService) {
   var list1 = this;
 
   list1.items = ShoppingListCheckOffService.getToBuyItems();
-  list1.message = ShoppingListCheckOffService.checkMessage();
 
   list1.buyItem = function (itemIndex) {
     ShoppingListCheckOffService.buyItem(itemIndex);
@@ -25,7 +24,6 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
   var list2 = this;
 
   list2.items = ShoppingListCheckOffService.getBoughtItems();
-  list2.message = ShoppingListCheckOffService.checkMessage();
 }
 
 
@@ -56,7 +54,6 @@ function ShoppingListCheckOffService() {
     }
   ];
   var boughtItems = [];
-  var message = ["", "Nothing bought yet."];   // message[0] for ToBuyController, message[1] for AlreadyBoughtController
 
   service.buyItem = function (itemIndex) {
     var tem = toBuyItems.splice(itemIndex, 1);   //remove from toBuyItems
@@ -66,11 +63,6 @@ function ShoppingListCheckOffService() {
       quantity: tem[0].quantity
     };
     boughtItems.push(item);          //add to boughtItems
-
-    message[1] = "";
-
-    if (toBuyItems.length == 0)        //check if toBuyItems is empty
-      message[0] = "Everything is bought!";
   }
 
   service.getToBuyItems = function () {
@@ -81,15 +73,6 @@ function ShoppingListCheckOffService() {
     return boughtItems;
   };
 
-  service.checkMessage = function () {
-    return message;
-  };
-
 }
 
 })();
-
-
-//looks like if bind array, will update automatically;
-//but if bind a string only, will *NOT* updated automatically.
-// see line 14, 15, 27, 28
