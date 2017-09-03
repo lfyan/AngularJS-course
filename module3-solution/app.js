@@ -12,9 +12,13 @@ function FoundItemsDirective() {
     scope: {
       myItems: '<',
       onRemove: '&'
-    }
+    }/*,
+    controller: NarrowItDownController,
+    controllerAs: 'narrowDown',
+    bindToController: true,*/
   };
-    return ddo;
+
+  return ddo;
 }
 
 NarrowItDownController.$inject = ['MenuSearchService'];
@@ -24,12 +28,17 @@ function NarrowItDownController (MenuSearchService) {
 
   list.findTheItem = function () {
     if (list.searchTerm == null || list.searchTerm.length === 0) {
-      list.found = [];
-      return;
+      return list.found = [];
     }
 
-    list.found = MenuSearchService.getMatchedMenuItems(list.searchTerm);
-  }
+    var promise = MenuSearchService.getMatchedMenuItems(list.searchTerm);
+    promise.then(function (response) {
+      list.found = response;
+    })
+    .catch (function (error) {
+      console.log("Something went terribly wrong.");
+    });
+  };
 
   list.removeItem = function (itemIndex) {
     list.found.splice(itemIndex, 1);
@@ -44,7 +53,7 @@ function MenuSearchService($http) {
   service.getMatchedMenuItems = function (searchTerm) {
     var foundItems = [];
 
-    $http({
+    return $http({
       method: "GET",
       url: "https://davids-restaurant.herokuapp.com/menu_items.json"
     }).then(function (response) {
@@ -57,9 +66,9 @@ function MenuSearchService($http) {
           foundItems.push(menus[i]);
         }
       }
+      return foundItems;
     });
 
-    return foundItems;
   };
 
 }
