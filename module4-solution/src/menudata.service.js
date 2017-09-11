@@ -14,11 +14,12 @@ function MenuDataService($http) {
        method: "GET",
        url: "https://davids-restaurant.herokuapp.com/categories.json"
      }).then(function (response) {
-       var data = response.data;
+       /*var data = response.data;
        data.forEach(function(item){
          categories.push(item.short_name);
        });
-       return categories;
+       return categories;*/
+       return response.data;
      })
 
   }
