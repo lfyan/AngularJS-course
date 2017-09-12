@@ -4,10 +4,10 @@
 angular.module('MenuApp')
 .controller('CategoriesController', CategoriesController);
 
-CategoriesController.$inject = ['categoryArray'];
-function CategoriesController(categoryArray) {
+CategoriesController.$inject = ['response'];
+function CategoriesController(response) {
   var list = this;
-  list.categoryArray = categoryArray;
+  list.categoryArray = response.data;
 }
 
 })();
