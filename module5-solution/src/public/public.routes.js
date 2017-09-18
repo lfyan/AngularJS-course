@@ -32,6 +32,14 @@ function routeConfig ($stateProvider) {
         user: ['MenuService',
               function (MenuService) {
                   return MenuService.getUser();
+        }],
+        favoritedishDetail: ['MenuService',
+              function (MenuService) {
+                  return MenuService.getFavoriteDishDetail();
+        }],
+        favoritedishUrl: ['MenuService',
+              function (MenuService) {
+                  return MenuService.getFavoriteDishUrl();
         }]
       }
     })

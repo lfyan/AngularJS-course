@@ -12,10 +12,10 @@ function RegistrationController (MenuService) {
   reg.submit = function () {
     reg.completed = true;
 
-    var promise = MenuService.getFavoriteItem(reg.user.favoritedish);
+    var promise = MenuService.getFavoriteItem(reg.user.favoritedishshortname);
     promise.then(function (response) {
       reg.found = response;
-      MenuService.saveUserInfo(reg.user.firstname, reg.user.lastname, reg.user.email, reg.user.phone, reg.user.favoritedish);
+      MenuService.saveUserInfo(reg.user.firstname, reg.user.lastname, reg.user.email, reg.user.phone, reg.user.favoritedishshortname, response);
       reg.error = false;
       reg.saved = true;
     })

@@ -4,11 +4,13 @@
 angular.module('public')
 .controller('GetInfoController', GetInfoController);
 
-GetInfoController.$inject = ['user'];
-function GetInfoController(user) {
+GetInfoController.$inject = ['user', 'favoritedishDetail', 'favoritedishUrl'];
+function GetInfoController(user, favoritedishDetail, favoritedishUrl) {
   var infoctrl = this;
   infoctrl.user = user;
-  //console.log(user);
+  infoctrl.favoritedishDetail = favoritedishDetail;
+  infoctrl.favoritedishUrl = favoritedishUrl;
+  console.log(infoctrl.favoritedishUrl);
 }
 
 })();

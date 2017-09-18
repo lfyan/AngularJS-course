@@ -1,10 +1,20 @@
-<div ng-if="infoctrl.user !== null">
+<div class="myinfo">
   <h3>My info page</h3>
-  <p>First name: {{infoctrl.user.firstname}} <p>
-  <p>Last name: {{infoctrl.user.lastname}}</p>
-  <p>Email: {{infoctrl.user.email}}</p>
-  <p>Phone: {{infoctrl.user.phone}}</p>
-  <br>
 
-  <h3>My favorite dish:</h3>
+  <div ng-if="!infoctrl.user">
+    <a ui-sref="signup">Not Signed up Yet. Sign up Now!</a>
+  </div>
+
+  <div ng-if="infoctrl.user">
+    <p>First name: {{infoctrl.user.firstname}} <p>
+    <p>Last name: {{infoctrl.user.lastname}}</p>
+    <p>Email: {{infoctrl.user.email}}</p>
+    <p>Phone: {{infoctrl.user.phone}}</p>
+    <br>
+
+    <h3>My favorite menu item:</h3>
+    <p>Dish name: {{infoctrl.favoritedishDetail.name}} <p>
+    <p>Description: {{infoctrl.favoritedishDetail.description}} <p>
+    <img width="250" height="150" ng-src="{{infoctrl.favoritedishUrl}}">
+  </div>
 </div>
